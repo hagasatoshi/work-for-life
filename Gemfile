@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 gem 'omniauth'
+gem 'omniauth-github'
 
 group :development do
   gem 'web-console'
