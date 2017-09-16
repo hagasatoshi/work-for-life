@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    meta name="turbolinks-cache-control" content="no-cache"
+    title = yield(:page_title)
+    javascript:
+        window.Tether = {};
+    = stylesheet_link_tag 'vendor', media: 'all', 'data-turbolinks-track' => false
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = favicon_link_tag 'favicon.ico'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    = yield
