@@ -28,10 +28,22 @@ class Github::Octokit
         .sort {|a, b| a[:id] <=> b[:id]}
   end
 
+  def organization(org_id)
+    org = @client.organization(org_id.to_i)
+    {id: org[:id], name: org[:login]}
+  end
+
+  def repository(repo_id)
+    repo = @client.repository(repo_id.to_i)
+    {id: repo[:id], name: repo[:name]}
+  end
+
   def commits(organization, repository, start_date, end_date)
     @client
         .commits_between("#{organization}/#{repository}", start_date, end_date)
-        .map {|commit| commit.to_h}
+        .map { |commit|
+          {author: commit[:commit][:author][:email], date: commit[:commit][:committer][:date], message: commit[:commit][:message]}
+        }
   end
 
 end

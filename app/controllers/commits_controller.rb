@@ -1,20 +1,19 @@
 class CommitsController < ApplicationController
-  before_action :set_org_id, :set_repo_id
-
   def index
+    token = session[:access_token]
+    raise ArgumentError unless token.present?
+
+    @commits = CommitsRetrieveService
+                   .new(token: token)
+                   .commits(
+                       index_params[:org_id], index_params[:repo_id],
+                       index_params[:start_date], index_params[:end_date]
+                   )
   end
 
   private
-  def set_org_id
-    @org_id = index_params[:org_id]
-  end
-
-  def set_repo_id
-    @repo_id = index_params[:repo_id]
-  end
-
   def index_params
-    params.permit(:org_id, :repo_id)
+    params.permit(:org_id, :repo_id, :start_date, :end_date)
   end
 
 end
