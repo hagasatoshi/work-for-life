@@ -21,6 +21,8 @@ gem 'jquery-ui-rails'
 gem 'omniauth'
 gem 'omniauth-github'
 
+gem 'octokit'
+
 group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
