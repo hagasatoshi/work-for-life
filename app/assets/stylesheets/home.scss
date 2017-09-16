@@ -1,0 +1,51 @@
+.login-dialog-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  z-index: 1;
+  &:before {
+    background: #F0F3F3;
+    position: absolute;
+    content: ' ';
+    top: -9900px;
+    right: -9900px;
+    bottom: -9900px;
+    left: -9900px;
+    opacity: 1;
+  }
+}
+
+.login-dialog-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: rgba(122, 122, 122, 0.0588235) 0 0 6px 3px;
+  width: 400px;
+  height: 250px;
+  opacity: 1;
+  z-index: 2;
+  background: #fff;
+  .login-dialog {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    .login-header {
+      height: 85px;
+      padding: 0 30px;
+      color: #396B9F;
+      text-align: center;
+      font-size: 21px;
+      line-height: 30px;
+      padding-top: 25px;
+    }
+    .login-button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
