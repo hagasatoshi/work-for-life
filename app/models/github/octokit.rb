@@ -3,6 +3,7 @@ class Github::Octokit
     @client = Octokit::Client.new(
       client_id: ENV['GITHUB_KEY'], client_secret: ENV['GITHUB_SECRET'], access_token: access_token
     )
+    @client.auto_paginate = true
   end
 
   def login_user_name
@@ -14,18 +15,16 @@ class Github::Octokit
         .map { |organization|
           {id: organization[:id], name: organization[:login]}
         }
-        .sort {|a, b| a[:id] <=> b[:id]}
+        .sort {|a, b| b[:id] <=> a[:id]}
   end
 
-  # 自分がcontributorになっているもののみを取得したいが、
-  # レスポンスを考慮して参照できるものすべてを取得する
   def my_repositories(org_id)
     @client
         .org_repos(org_id, {type: 'member'})
         .map { |repository|
           {id: repository[:id], name: repository[:name]}
         }
-        .sort {|a, b| a[:id] <=> b[:id]}
+        .sort {|a, b| b[:id] <=> a[:id]}
   end
 
   def organization(org_id)
@@ -40,7 +39,7 @@ class Github::Octokit
 
   def commits(organization, repository, start_date, end_date)
     @client
-        .commits_between("#{organization}/#{repository}", start_date, end_date)
+        .commits("#{organization}/#{repository}", since: "#{start_date}T00:00:00+09:00", until: "#{end_date}T00:00:00+09:00")
         .map { |commit|
           {author: commit[:commit][:author][:email], date: commit[:commit][:committer][:date].in_time_zone('Asia/Tokyo'),
             message: commit[:commit][:message]}
