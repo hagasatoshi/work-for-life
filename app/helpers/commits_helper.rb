@@ -2,7 +2,7 @@ module CommitsHelper
   def circle_style(commit_count)
     return 'display: none;' if @max_count == 0 || commit_count == 0
 
-    width = Constants::CIRCLE_SIZE * (commit_count.to_f / @max_count)
+    width = Constants::CIRCLE_SIZE * ((commit_count.to_f / @max_count)**(1/2.0))
     height = width
     left = (-1) * (width / 2)
     top = 32 - (width / 2)
