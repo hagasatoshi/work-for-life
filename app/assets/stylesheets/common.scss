@@ -103,12 +103,12 @@ a.btn.fotter-button {
 .dialog-container {
   position: fixed;
   border-radius: 4px;
-  padding: 20px 25px;
+  padding: 20px 45px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 450px;
-  height: 420px;
+  height: 460px;
   opacity: 1;
   z-index: 2;
   background: #fff;
@@ -137,10 +137,15 @@ a.btn.fotter-button {
     }
     .content {
       margin-top: 15px;
+      margin-bottom: 30px;
       .row {
+        margin-top: 10px;
         height: 70px;
         .title {
           font-weight: bold;
+        }
+        .picklist {
+          margin-top: 5px;
         }
       }
     }

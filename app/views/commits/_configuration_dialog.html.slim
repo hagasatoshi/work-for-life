@@ -6,15 +6,19 @@
       .row.organization
         .title Organization
         .picklist
+          = render 'shared/picklist', pick_list_id: 'pick_org', type1: 'info', type2: 'org', default_value: '1', default_label: 'org1', values: organization_picklist
       .row.repository
         .title Ripository
         .picklist
+          = render 'shared/picklist', pick_list_id: 'pick_repo', type1: 'info', type2: 'repo', default_value: '1', default_label: 'repo1', values: repository_picklist
       .row.from-date
-        .title from:
+        .title from
         .picklist
-      .row.from-date
-        .title to:
+          = render 'shared/picklist', pick_list_id: 'pick_from', type1: 'info', type2: 'from', default_value: '2017-01-01', default_label: '2017-01-01', values: from_date_picklist
+      .row.interval
+        .title interval
         .picklist
+          = render 'shared/picklist', pick_list_id: 'pick_interval', type1: 'info', type2: 'interval', default_value: 'week', default_label: '１週間', values: interval_picklist
     .footer
       .button-container
         a.btn.fotter-button.white.left href="javascript:void(0)" onclick="hideDialog();return false;"  キャンセル
