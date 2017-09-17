@@ -11,8 +11,8 @@ module CommitsHelper
     orgs.map {|org| {label: org[:name], value: org[:id].to_s}}
   end
 
-  def repository_picklist
-    [{label: 'repo1', value: '1'},{label: 'repo2', value: '2'},{label: 'repo3', value: '3'}]
+  def repo_picklist(repos)
+    repos.map {|repo| {label: repo[:name], value: repo[:id].to_s}}
   end
 
   def from_date_picklist

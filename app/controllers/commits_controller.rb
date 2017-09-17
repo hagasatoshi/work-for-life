@@ -1,5 +1,5 @@
 class CommitsController < ApplicationController
-  before_action :set_service, :set_repository_info, :set_commit_counts, :set_max_count, :set_orgs
+  before_action :set_service, :set_repository_info, :set_commit_counts, :set_max_count, :set_orgs, :set_repos
 
   def index
   end
@@ -23,7 +23,9 @@ class CommitsController < ApplicationController
     @org_id = index_params[:org_id]
     @org_name = @retrieve.org_name
 
+    @repo_id = index_params[:repo_id]
     @repo_name = @retrieve.repo_name
+
     @start_date = @retrieve.start_date
     @end_date = @retrieve.end_date
   end
@@ -38,6 +40,10 @@ class CommitsController < ApplicationController
 
   def set_orgs
     @orgs = @retrieve.organizations
+  end
+
+  def set_repos
+    @repos = @retrieve.repositories(index_params[:org_id].to_i)
   end
 
   def index_params
