@@ -1,0 +1,25 @@
+.main
+  .header
+    .container
+      .title Work Life Balance
+      .configuration
+        a.btn.blue 設定を変更する
+  .content
+    .container
+      .content-header
+        .repository pasonatquila / expert / 2017/09/01-2017/09/30
+      .chart-container
+        .commit-counts
+          - Constants::DOW.each do |dow|
+            .row
+              .col.dow = dow
+              - Constants::TIME_ARRAY.each do |time_desc|
+                .col.time
+                  .circle
+                  .line
+              .clear
+          .row.footer
+            .col.offset
+            - Constants::TIME_ARRAY.each do |time_desc|
+              .col.time = time_desc
+            .clear
