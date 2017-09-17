@@ -7,8 +7,8 @@ module CommitsHelper
     "width: #{width.to_s}px; height: #{height.to_s}px; left: #{left.to_s}px; top: #{top.to_s}px;"
   end
 
-  def organization_picklist
-    [{label: 'org1', value: '1'},{label: 'org2', value: '2'},{label: 'org3', value: '3'}]
+  def org_picklist(orgs)
+    orgs.map {|org| {label: org[:name], value: org[:id].to_s}}
   end
 
   def repository_picklist

@@ -15,6 +15,10 @@ class CommitsRetrieveService
     self
   end
 
+  def organizations
+    @octokit.my_organizations
+  end
+
   #TODO 例外処理はあとでまとめて実施する
   def default_repository_information
     my_organizations = @octokit.my_organizations

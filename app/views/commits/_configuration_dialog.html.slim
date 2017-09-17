@@ -6,7 +6,7 @@
       .row.organization
         .title Organization
         .picklist
-          = render 'shared/picklist', pick_list_id: 'pick_org', type1: 'info', type2: 'org', default_value: '1', default_label: 'org1', values: organization_picklist
+          = render 'shared/picklist', pick_list_id: 'pick_org', type1: 'info', type2: 'org', default_value: @org_id.to_s, default_label: @org_name, values: org_picklist(orgs)
       .row.repository
         .title Ripository
         .picklist
