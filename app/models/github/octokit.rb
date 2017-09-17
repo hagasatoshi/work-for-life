@@ -3,6 +3,7 @@ class Github::Octokit
     @client = Octokit::Client.new(
       client_id: ENV['GITHUB_KEY'], client_secret: ENV['GITHUB_SECRET'], access_token: access_token
     )
+    @client.auto_paginate = true
   end
 
   def login_user_name
@@ -17,8 +18,6 @@ class Github::Octokit
         .sort {|a, b| a[:id] <=> b[:id]}
   end
 
-  # 自分がcontributorになっているもののみを取得したいが、
-  # レスポンスを考慮して参照できるものすべてを取得する
   def my_repositories(org_id)
     @client
         .org_repos(org_id, {type: 'member'})
