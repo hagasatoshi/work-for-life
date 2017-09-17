@@ -15,7 +15,7 @@
         .term
           span.date = @from_date.strftime('%Y-%m-%d')
           span.devide
-          span.date = @to_date.strftime('%Y-%m-%d')
+          span.date = (@to_date - 1.days).strftime('%Y-%m-%d')
       .chart-container
         .commit-counts
           - Constants::DOW.each do |dow|

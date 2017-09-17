@@ -39,7 +39,7 @@ class Github::Octokit
 
   def commits(organization, repository, start_date, end_date)
     @client
-        .commits_between("#{organization}/#{repository}", start_date, end_date)
+        .commits("#{organization}/#{repository}", since: "#{start_date}T00:00:00+09:00", until: "#{end_date}T00:00:00+09:00")
         .map { |commit|
           {author: commit[:commit][:author][:email], date: commit[:commit][:committer][:date].in_time_zone('Asia/Tokyo'),
             message: commit[:commit][:message]}
