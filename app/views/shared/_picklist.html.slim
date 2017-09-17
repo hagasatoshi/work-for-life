@@ -1,0 +1,15 @@
+.picklist-container id=pick_list_id
+  input type='hidden' name="#{type1}[#{type2}]" value=default_value id="hidden_pick_#{type1}_#{type2}"
+
+  a.picklist-single.picklist-single-with-drop.no-link href="javascript:void(0)" id="selected_#{type1}_#{type2}"
+    span.picklist-single__item id="span_#{type1}_#{type2}"
+      = default_label
+
+  .picklist-drop.hide id="drop_#{type1}_#{type2}"
+    ul.picklist-results
+      - values.each do |e|
+        li.active-result data-id=e[:value]
+          = e[:label]
+
+javascript:
+  onLoadPickList("#{type1}", "#{type2}", "#{pick_list_id}");

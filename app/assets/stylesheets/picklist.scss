@@ -1,0 +1,138 @@
+.picklist-container {
+  width: 100% !important;
+  text-align: left;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  .picklist-results {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 215px;
+    margin: 0 4px 4px 0;
+    padding: 10px 0 0 4px;
+    li {
+      line-height: 100%;
+      display: none;
+      margin: 0;
+      padding: 3px 3px 4px;
+      list-style: none;
+      svg, img {
+        width: 8px;
+        height: 8px;
+        margin-right: -2px;
+        margin-bottom: 1px;
+        &:first-child {
+          margin-left: 5px;
+        }
+      }
+      &.active-result {
+        font-size: 13px;
+        line-height: 15px;
+        position: relative;
+        display: list-item;
+        padding: 6px 10px;
+        cursor: pointer;
+        color: #333;
+        border-radius: 4px;
+        &.result-selected {
+          background-color: rgba(137, 162, 186, 0.2);
+        }
+        &:hover {
+          background-color: rgba(137, 162, 186, 0.2);
+        }
+        img {
+          float: right;
+          margin-top: 1px;
+          margin-right: -3px;
+          z-index: 2;
+          width: 14px;
+        }
+      }
+    }
+  }
+  .picklist-drop {
+    position: absolute;
+    top: 31px;
+    left: 0px;
+    &.hide {
+      left: -9900px;
+    }
+    width: 100% !important;
+    z-index: 800;
+    border: solid 1px #bdbdbd;
+    border-top: 0;
+    border-radius: 0 0 4px 4px;
+    background: #fff;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,.35);
+  }
+  &.hover {
+    .picklist-single {
+      transition-timing-function: ease-out;
+      transition-duration: 0.1s;
+      transition-property: background,border,box-shadow;
+      &:hover {
+        background: #edf0f1;
+      }
+      span.picklist-single__item {
+        transition-timing-function: ease-out;
+        transition-duration: 0.1s;
+        transition-property: background;
+        &:hover {
+          background: #edf0f1;
+        }
+      }
+    }
+  }
+  .picklist-single {
+    transition-timing-function: ease-in-out;
+    transition-duration: .15s;
+    transition-property: border,box-shadow, background;
+    line-height: 3rem;
+    height: auto;
+    padding: 0 11px;
+    color: #222;
+    border: solid 1px #CCCCCC;
+    border-radius: 4px;
+    background: 0 0;
+    background-color: #fff;
+    box-shadow: none;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration: none;
+    &:hover {
+      background: #f2f2f2;
+    }
+    span.picklist-single__item {
+      display: block;
+      overflow: hidden;
+      margin-right: 18px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      -ms-text-overflow: ellipsis;
+      position: relative;
+      cursor: pointer;
+      height: 35px;
+      line-height: 32px;
+      svg, img {
+        width: 8px;
+        margin-right: -2px;
+        margin-bottom: -10px;
+        &:first-child {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .picklist-single::after {
+    position: absolute;
+    top: -8px;
+    right: 15px;
+    margin: auto;
+    content: url('/images/pull-down-nav.png');
+  }
+}
+
+
