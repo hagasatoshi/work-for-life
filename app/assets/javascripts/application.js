@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery.balloon
 
 function showDialog() {
     $('.dialog-background').removeClass('hide');
@@ -29,4 +30,20 @@ function hideDialog() {
         $background.removeClass('opacity0');
         $background.addClass('hide');
     }, 300);
+}
+
+function setBaloon(elm, option) {
+    var baloonOption = {
+        position: 'top',
+        minLifetime: 0,
+        hideDuration: 0,
+        css: {
+            'box-shadow': 'none',
+            'background-color': '#142941',
+            border: 'none',
+            padding: '7px 10px'
+        }
+    };
+    option = option || baloonOption;
+    $(elm).balloon(option);
 }

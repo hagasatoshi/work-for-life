@@ -1,3 +1,7 @@
+$(document).on('turbolinks:load', function() {
+    setBaloon('.circle');
+});
+
 function refreshPage() {
     var $pickOrg = $('#hidden_pick_info_org');
     var $pickRepo = $('#hidden_pick_info_repo');
