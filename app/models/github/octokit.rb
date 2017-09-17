@@ -15,7 +15,7 @@ class Github::Octokit
         .map { |organization|
           {id: organization[:id], name: organization[:login]}
         }
-        .sort {|a, b| a[:id] <=> b[:id]}
+        .sort {|a, b| b[:id] <=> a[:id]}
   end
 
   def my_repositories(org_id)
@@ -24,7 +24,7 @@ class Github::Octokit
         .map { |repository|
           {id: repository[:id], name: repository[:name]}
         }
-        .sort {|a, b| a[:id] <=> b[:id]}
+        .sort {|a, b| b[:id] <=> a[:id]}
   end
 
   def organization(org_id)
