@@ -25,7 +25,7 @@
   transform: translate(-50%, -50%);
   box-shadow: rgba(122, 122, 122, 0.0588235) 0 0 6px 3px;
   width: 400px;
-  height: 250px;
+  height: 300px;
   opacity: 1;
   z-index: 2;
   background: #fff;
@@ -34,13 +34,17 @@
     width: 100%;
     position: relative;
     .login-header {
-      height: 85px;
-      padding: 0 30px;
-      color: #396B9F;
+      height: 65px;
+      padding: 65px 30px;
+      color: #333;
       text-align: center;
       font-size: 21px;
       line-height: 30px;
-      padding-top: 25px;
+      .image {
+        img {
+          width: 260px;
+        }
+      }
     }
     .login-button {
       width: 100%;
