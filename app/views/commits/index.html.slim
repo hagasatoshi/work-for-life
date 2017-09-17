@@ -15,7 +15,7 @@
               .col.dow = dow
               - Constants::TIME_ARRAY.each do |time_desc|
                 .col.time
-                  .circle
+                  .circle style=circle_style(@commit_counts[dow][time_desc])
                   .line
               .clear
           .row.footer

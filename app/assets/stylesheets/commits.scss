@@ -60,12 +60,7 @@
           width: 36px;
           position: relative;
           .circle {
-            //TODO 位置と大きさはcommit数に応じて動的に決定する
             position: absolute;
-            left: -10px;
-            top: 22px;
-            width: 20px;
-            height: 20px;
             background: #333;
             border-radius: 50%;
           }
