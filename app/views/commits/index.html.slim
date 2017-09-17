@@ -13,9 +13,9 @@
           span.devide
           span.info = @repo_name
         .term
-          span.date = @start_date
+          span.date = @from_date.strftime('%Y-%m-%d')
           span.devide
-          span.date = @end_date
+          span.date = @to_date.strftime('%Y-%m-%d')
       .chart-container
         .commit-counts
           - Constants::DOW.each do |dow|

@@ -12,7 +12,7 @@ class CommitsController < ApplicationController
     @retrieve = CommitsRetrieveService.new(token: token)
                     .retrieve(
                       index_params[:org_id], index_params[:repo_id],
-                      index_params[:start_date], index_params[:end_date]
+                      index_params[:from_date], index_params[:interval]
                     )
     @calclate = CommitsCalculateService
                         .new(commits: @retrieve.commits)
@@ -26,8 +26,9 @@ class CommitsController < ApplicationController
     @repo_id = index_params[:repo_id]
     @repo_name = @retrieve.repo_name
 
-    @start_date = @retrieve.start_date
-    @end_date = @retrieve.end_date
+    @from_date = @retrieve.from_date_val
+    @to_date = @retrieve.to_date_val
+    @interval = @retrieve.interval
   end
 
   def set_commit_counts
@@ -47,7 +48,7 @@ class CommitsController < ApplicationController
   end
 
   def index_params
-    params.permit(:org_id, :repo_id, :start_date, :end_date)
+    params.permit(:org_id, :repo_id, :from_date, :interval)
   end
 
 end

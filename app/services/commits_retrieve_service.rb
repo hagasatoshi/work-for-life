@@ -1,17 +1,17 @@
 class CommitsRetrieveService
-  attr_accessor :org_name, :repo_name, :start_date, :end_date, :commits
+  attr_accessor :org_name, :repo_name, :from_date_val, :to_date_val, :interval, :commits
 
   def initialize(args=nil)
     @octokit = Github::Octokit.new(args[:token])
   end
 
-  def retrieve(org_id, repo_id, start_date, end_date)
+  def retrieve(org_id, repo_id, from_date, interval)
     @org_name = @octokit.organization(org_id)[:name]
     @repo_name = @octokit.repository(repo_id)[:name]
-    @start_date = dafault(start_date, Time.zone.now.beginning_of_month.strftime('%Y-%m-%d'))
-    @end_date = dafault(end_date, Time.zone.now.end_of_month.strftime('%Y-%m-%d'))
-
-    @commits = @octokit.commits(@org_name, @repo_name, @start_date, @end_date)
+    @from_date_val = Time.zone.parse(dafault(from_date, Time.zone.today.beginning_of_week.yesterday.strftime('%Y-%m-%d')))
+    @interval = dafault(interval, 'week')
+    @to_date_val = @from_date_val + (@interval == 'week' ? 1.weeks : 1.months)
+    @commits = @octokit.commits(@org_name, @repo_name, @from_date_val.strftime('%Y-%m-%d'), @to_date_val.strftime('%Y-%m-%d'))
     self
   end
 

@@ -16,11 +16,13 @@ module CommitsHelper
   end
 
   def from_date_picklist
-    [
-        {label: '2017-01-01', value: '2017-01-01'}, {label: '2017-02-01', value: '2017-02-01'}, {label: '2017-03-01', value: '2017-03-01'},
-        {label: '2017-04-01', value: '2017-04-01'}, {label: '2017-05-01', value: '2017-05-01'}, {label: '2017-06-01', value: '2017-06-01'},
-        {label: '2017-06-01', value: '2017-07-01'}, {label: '2017-08-01', value: '2017-08-01'}, {label: '2017-09-01', value: '2017-09-01'}
-    ]
+    last_sunday = Time.zone.today.beginning_of_week.yesterday
+    (0..25)
+        .to_a
+        .map {|num|
+          sunday = last_sunday - num.weeks
+          {label: sunday.strftime('%Y-%m-%d'), value: sunday.strftime('%Y-%m-%d')}
+        }
   end
 
   def interval_picklist

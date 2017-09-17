@@ -14,11 +14,11 @@
       .row.from-date
         .title from
         .picklist
-          = render 'shared/picklist', pick_list_id: 'pick_from', type1: 'info', type2: 'from', default_value: '2017-01-01', default_label: '2017-01-01', values: from_date_picklist
+          = render 'shared/picklist', pick_list_id: 'pick_from', type1: 'info', type2: 'from', default_value: @from_date.strftime('%Y-%m-%d'), default_label: @from_date.strftime('%Y-%m-%d'), values: from_date_picklist
       .row.interval
         .title interval
         .picklist
-          = render 'shared/picklist', pick_list_id: 'pick_interval', type1: 'info', type2: 'interval', default_value: 'week', default_label: '１週間', values: interval_picklist
+          = render 'shared/picklist', pick_list_id: 'pick_interval', type1: 'info', type2: 'interval', default_value: @interval, default_label: @interval == 'week' ? '１週間' : '１ヶ月', values: interval_picklist
     .footer
       .button-container
         a.btn.fotter-button.white.left href="javascript:void(0)" onclick="hideDialog();return false;"  キャンセル
