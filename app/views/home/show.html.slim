@@ -1,5 +1,7 @@
 .login-dialog-background
 .login-dialog-container
   .login-dialog
-    .login-header Work Life Balance
-    .login-button = link_to 'GitHubにログインして使い始める', '/auth/github', class: 'btn btn-login'
+    .login-header
+      .image = image_tag 'main.png'
+    .login-button
+      = link_to 'GitHubで働き方をチェックする', '/auth/github', class: 'btn wide blue'
