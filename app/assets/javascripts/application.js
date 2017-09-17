@@ -14,3 +14,19 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function showDialog() {
+    $('.dialog-background').removeClass('hide');
+    $('.dialog-container').removeClass('hide');
+}
+
+function hideDialog() {
+    var $background = $('.dialog-background');
+    var $container = $('.dialog-container');
+    $background.addClass('opacity0');
+    $container.addClass('hide');
+    setTimeout(function () {
+        $background.removeClass('opacity0');
+        $background.addClass('hide');
+    }, 300);
+}
