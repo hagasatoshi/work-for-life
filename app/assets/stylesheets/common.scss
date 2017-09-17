@@ -15,17 +15,149 @@ a.btn {
   padding: 8px 20px;
   border-radius: 4px;
   font-size: 14px;
+  text-decoration: none;
   transition-timing-function: ease-out;
   transition-duration: 0.1s;
   transition-property: background;
   &:hover {
     cursor: pointer;
   }
+  &.left {
+    float: left;
+  }
+  &.right {
+    float: right;
+  }
   &.blue {
     background: #0366d6;
     color: #fff;
+    border: 1px solid #0366d6;
     &:hover {
       background: #024ea4;
     }
   }
+  &.white {
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    &:hover {
+      background: #f2f2f2;
+    }
+  }
 }
+
+a.btn.fotter-button {
+  padding: 0;
+  height: 40px;
+  line-height: 40px;
+  width: 155px;
+  text-align: center;
+}
+
+.dialog-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  z-index: 1;
+  float: left;
+  transition: opacity 0.5s ease;
+  &.hide {
+    top: -9900px;
+    left: -9900px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    transition-timing-function: ease-out;
+    transition-duration: 0.3s;
+    transition-property: opacity;
+  }
+  &.opacity0 {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  &:before, &.hide:before {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    content: ' ';
+    transition: opacity 0.3s ease;
+  }
+  &.hide:before {
+    top: -9900px;
+    left: -9900px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  &:before {
+    top: -9900px;
+    right: -9900px;
+    bottom: -9900px;
+    left: -9900px;
+    opacity: 1;
+  }
+}
+
+.dialog-container {
+  position: fixed;
+  border-radius: 4px;
+  padding: 20px 25px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 420px;
+  opacity: 1;
+  z-index: 2;
+  background: #fff;
+  transition-timing-function: ease-out;
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  &.hide {
+    top: -9900px;
+    left: -9900px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .dialog {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    .dialog-header {
+      padding: 0 30px;
+      color: #333;
+      text-align: center;
+      font-size: 21px;
+      line-height: 50px;
+      height: 50px;
+    }
+    .content {
+      margin-top: 15px;
+      .row {
+        height: 70px;
+        .title {
+          font-weight: bold;
+        }
+      }
+    }
+    .footer {
+      height: 50px;
+      line-height: 50px;
+      width: 100%;
+      .button-container {
+        height: 50px;
+        line-height: 50px;
+        width: 350px;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+
+
+
