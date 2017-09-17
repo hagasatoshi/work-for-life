@@ -1,0 +1,126 @@
+.header {
+  width: 100%;
+  background: #fafbfc;
+  height: 40px;
+  line-height: 40px;
+  padding: 20px 0;
+  border-bottom: 1px solid #e1e4e8;
+  .container {
+    width: 980px;
+    margin-right: auto;
+    margin-left: auto;
+    .title {
+      float: left;
+      color: #333;
+      font-size: 20px;
+    }
+    .configuration {
+      float: right;
+    }
+  }
+}
+
+.content {
+  width: 100%;
+  background: #fff;
+  .container {
+    width: 980px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .content-header {
+    width: 100%;
+    height: 50px;
+    padding: 15px 0;
+    .repository {
+      float: left;
+      font-size: 18px;
+      line-height: 40px;
+      height: 40px;
+      span {
+        &.info {
+          font-size: 19px;
+          color: #0366d6;
+        }
+        &.devide {
+          font-size: 16px;
+          margin-left: 5px;
+          margin-right: 5px;
+          &:before {
+            content: "/";
+          }
+        }
+      }
+    }
+    .term {
+      float: right;
+      font-size: 16px;
+      line-height: 40px;
+      height: 40px;
+      span {
+        &.date {
+          font-size: 17px;
+        }
+        &.devide {
+          font-size: 14px;
+          margin-left: 8px;
+          margin-right: 8px;
+          &:before {
+            content: "〜";
+          }
+        }
+      }
+    }
+  }
+  .chart-container {
+    width: 100%;
+    height: 520px;
+    .row {
+      height: 67px;
+      line-height: 67px;
+      border-bottom: 1px solid #e0e0e0;
+      .col {
+        float: left;
+        height: 67px;
+        line-height: 67px;
+        &.dow {
+          width: 110px;
+        }
+        &.offset {
+          width: 104px;
+        }
+        &.time {
+          width: 36px;
+          position: relative;
+          .circle {
+            position: absolute;
+            background: #333;
+            border-radius: 50%;
+          }
+          .line {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 15px;
+            border-left: 1px solid #e0e0e0;
+          }
+        }
+      }
+      &.footer {
+        height: 50px;
+        line-height: 50px;
+        border-bottom: none;
+        .col {
+          height: 50px;
+          line-height: 50px;
+          font-weight: bold;
+          font-size: 12px;
+        }
+      }
+      .clear {
+        clear: both;
+      }
+    }
+  }
+
+}

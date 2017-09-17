@@ -1,0 +1,32 @@
+.main
+  .header
+    .container
+      .title Work Life Balance
+      .configuration
+        a.btn.blue 設定を変更する
+  .content
+    .container
+      .content-header
+        .repository
+          span.info = @org_name
+          span.devide
+          span.info = @repo_name
+        .term
+          span.date = @start_date
+          span.devide
+          span.date = @end_date
+      .chart-container
+        .commit-counts
+          - Constants::DOW.each do |dow|
+            .row
+              .col.dow = dow
+              - Constants::TIME_ARRAY.each do |time_desc|
+                .col.time
+                  .circle style=circle_style(@commit_counts[dow][time_desc])
+                  .line
+              .clear
+          .row.footer
+            .col.offset
+            - Constants::TIME_ARRAY.each do |time_desc|
+              .col.time = time_desc
+            .clear
