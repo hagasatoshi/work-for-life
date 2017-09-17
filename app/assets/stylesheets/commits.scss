@@ -37,6 +37,39 @@
       font-size: 18px;
       line-height: 40px;
       height: 40px;
+      span {
+        &.info {
+          font-size: 19px;
+          color: #0366d6;
+        }
+        &.devide {
+          font-size: 16px;
+          margin-left: 5px;
+          margin-right: 5px;
+          &:before {
+            content: "/";
+          }
+        }
+      }
+    }
+    .term {
+      float: right;
+      font-size: 16px;
+      line-height: 40px;
+      height: 40px;
+      span {
+        &.date {
+          font-size: 17px;
+        }
+        &.devide {
+          font-size: 14px;
+          margin-left: 8px;
+          margin-right: 8px;
+          &:before {
+            content: "〜";
+          }
+        }
+      }
     }
   }
   .chart-container {

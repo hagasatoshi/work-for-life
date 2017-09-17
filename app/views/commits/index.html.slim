@@ -7,7 +7,14 @@
   .content
     .container
       .content-header
-        .repository pasonatquila / expert / 2017/09/01-2017/09/30
+        .repository
+          span.info = @org_name
+          span.devide
+          span.info = @repo_name
+        .term
+          span.date = @start_date
+          span.devide
+          span.date = @end_date
       .chart-container
         .commit-counts
           - Constants::DOW.each do |dow|

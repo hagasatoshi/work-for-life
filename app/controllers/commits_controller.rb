@@ -1,5 +1,5 @@
 class CommitsController < ApplicationController
-  before_action :set_service, :set_commit_counts, :set_max_count
+  before_action :set_service, :set_repository_info, :set_commit_counts, :set_max_count
 
   def index
   end
@@ -9,15 +9,21 @@ class CommitsController < ApplicationController
     token = session[:access_token]
     raise ArgumentError unless token.present?
 
-    commits = CommitsRetrieveService
-                  .new(token: token)
-                  .commits(
+    @retrieve = CommitsRetrieveService.new(token: token)
+                    .retrieve(
                       index_params[:org_id], index_params[:repo_id],
                       index_params[:start_date], index_params[:end_date]
-                  )
+                    )
     @calclate = CommitsCalculateService
-                        .new(commits: commits)
+                        .new(commits: @retrieve.commits)
                         .calculate
+  end
+
+  def set_repository_info
+    @org_name = @retrieve.org_name
+    @repo_name = @retrieve.repo_name
+    @start_date = @retrieve.start_date
+    @end_date = @retrieve.end_date
   end
 
   def set_commit_counts
