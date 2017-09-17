@@ -10,7 +10,7 @@ class CommitsRetrieveService
     @repo_name = @octokit.repository(repo_id)[:name]
     @from_date_val = Time.zone.parse(dafault(from_date, Time.zone.today.beginning_of_week.yesterday.strftime('%Y-%m-%d')))
     @interval = dafault(interval, 'week')
-    @to_date_val = @from_date_val + (@interval == 'week' ? 1.weeks : 1.months)
+    @to_date_val = @from_date_val + (@interval == 'week' ? 1.weeks : 1.months) - 1.days
     @commits = @octokit.commits(@org_name, @repo_name, @from_date_val.strftime('%Y-%m-%d'), @to_date_val.strftime('%Y-%m-%d'))
     self
   end
