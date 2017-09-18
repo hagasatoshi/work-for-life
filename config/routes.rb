@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#callback'
 
   resources :orgs, only: %i() do
-    resources :repos, only: %i() do
+    resources :repos, only: %i(index) do
       resources :commits, only: %i(index)
     end
   end

@@ -1,6 +1,34 @@
 $(document).on('turbolinks:load', function() {
     setBaloon('.circle');
+    eventOrgPicklist();
 });
+
+function eventOrgPicklist() {
+    $('#org-picklist li.active-result').mousedown(function () {
+        var $selected = $(this);
+        var $repoPickList = $('#repo-picklist');
+
+        var orgId = $selected.attr('data-id');
+        retrieveRepoPickList(orgId)
+            .then(function(html) {
+                $repoPickList.html(html);
+            }).fail(function(err) {
+                console.log(err);
+            });
+
+    });
+}
+
+function retrieveRepoPickList(orgId) {
+    var deferred = new $.Deferred;
+    $.ajax({
+        url: '/orgs/' + orgId + '/repos',
+        type: 'GET',
+        success: deferred.resolve,
+        error: deferred.reject
+    });
+    return deferred.promise();
+}
 
 function refreshPage() {
     var $pickOrg = $('#hidden_pick_info_org');
