@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     @repository = CommitsRetrieveService
                              .new(token: @token)
                              .default_repository_information
-    redirect_with_error_message 'GitHub Organizationへの登録が無いため実行できません' unless @repository.present?
+    redirect_with_error_message '参照が許可されているGitHub Organizationが存在しないため実行できません' unless @repository.present?
   end
 
 end
