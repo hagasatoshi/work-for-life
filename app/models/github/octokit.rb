@@ -11,7 +11,8 @@ class Github::Octokit
   end
 
   def my_organizations
-    @client.organizations
+    @client.list_organizations
+        .select {|org| @client.org_repos(org[:id], {type: 'member'}).present? }
         .map { |organization|
           {id: organization[:id], name: organization[:login]}
         }
