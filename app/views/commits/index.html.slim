@@ -1,3 +1,5 @@
+- content_for(:page_title, "#{@repo_name}のcommit一覧 | Work for Life")
+
 = render 'configuration_dialog', orgs: @orgs, repos: @repos
 .main
   .header
