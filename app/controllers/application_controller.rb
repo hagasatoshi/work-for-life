@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: '問題が発生しました'
   end
 
+  def redirect_session_invalid
+    redirect_to root_path, alert: 'セッションが無効です。ホームから再実行してください' unless session[:access_token].present?
+  end
+
 end

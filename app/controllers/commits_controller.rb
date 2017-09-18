@@ -1,4 +1,5 @@
 class CommitsController < ApplicationController
+  before_action :redirect_session_invalid
   before_action :set_service, :set_repository_info, :set_commit_counts, :set_max_count, :set_orgs, :set_repos
 
   def index
