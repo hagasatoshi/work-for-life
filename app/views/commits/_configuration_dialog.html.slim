@@ -5,19 +5,19 @@
     .content
       .row.organization
         .title Organization
-        .picklist
+        #org-picklist.picklist
           = render 'shared/picklist', pick_list_id: 'pick_org', type1: 'info', type2: 'org', default_value: @org_id.to_s, default_label: @org_name, values: org_picklist(orgs)
       .row.repository
         .title Repository
-        .picklist
+        #repo-picklist.picklist
           = render 'shared/picklist', pick_list_id: 'pick_repo', type1: 'info', type2: 'repo', default_value: @repo_id.to_s, default_label: @repo_name, values: repo_picklist(repos)
       .row.from-date
         .title from
-        .picklist
+        #from-picklist.picklist
           = render 'shared/picklist', pick_list_id: 'pick_from', type1: 'info', type2: 'from', default_value: @from_date.strftime('%Y-%m-%d'), default_label: @from_date.strftime('%Y-%m-%d'), values: from_date_picklist
       .row.interval
         .title interval
-        .picklist
+        #interval-picklist.picklist
           = render 'shared/picklist', pick_list_id: 'pick_interval', type1: 'info', type2: 'interval', default_value: @interval, default_label: @interval == 'week' ? '１週間' : '１ヶ月', values: interval_picklist
     .footer
       .button-container
