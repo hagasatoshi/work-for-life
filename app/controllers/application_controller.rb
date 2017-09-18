@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: 'セッションが無効です。ホームから再実行してください' unless session[:access_token].present?
   end
 
+  def redirect_with_error_message(message)
+    session[:access_token] = nil
+    redirect_to root_path, alert: message
+  end
 end

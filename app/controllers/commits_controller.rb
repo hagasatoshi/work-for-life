@@ -42,10 +42,12 @@ class CommitsController < ApplicationController
 
   def set_orgs
     @orgs = @retrieve.organizations
+    redirect_with_error_message 'GitHub Organizationへの登録が無いため実行できません' unless @orgs.present?
   end
 
   def set_repos
     @repos = @retrieve.repositories(index_params[:org_id].to_i)
+    redirect_with_error_message 'GitHub Organizationへの登録が無いため実行できません' unless @repos.present?
   end
 
   def index_params

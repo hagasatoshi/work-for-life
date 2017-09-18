@@ -23,12 +23,15 @@ class CommitsRetrieveService
     @octokit.my_repositories(org_id)
   end
 
-  #TODO 例外処理はあとでまとめて実施する
   def default_repository_information
     my_organizations = @octokit.my_organizations
+    return nil unless my_organizations.present?
+
     default_org = my_organizations.first
 
     my_repositories = @octokit.my_repositories(default_org[:id])
+    return nil unless my_repositories.present?
+
     default_repository = my_repositories.first
 
     {org_id: default_org[:id], org_name: default_org[:name],
