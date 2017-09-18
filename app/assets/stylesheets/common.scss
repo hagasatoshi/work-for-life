@@ -11,6 +11,22 @@ html body {
   }
 }
 
+.error-message {
+  position: fixed;
+  top: calc(50% - 220px);
+  left: 50%;
+  width: 400px;
+  transform: translate(-50%, -50%);
+  color: #E35D40;
+  padding: 15px 0;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: rgba(122, 122, 122, 0.0588235) 0 0 6px 3px;
+  font-size: 13px;
+  text-align: center;
+  z-index: 10;
+}
+
 a.btn {
   padding: 8px 20px;
   border-radius: 4px;

@@ -1,12 +1,18 @@
 class SessionsController < ApplicationController
-  def callback
-    token = request.env['omniauth.auth'][:credentials][:token]
-    default_repository = CommitsRetrieveService
-                             .new(token: token)
-                             .default_repository_information
+  before_action :set_repository
 
-    session[:access_token] = token
-    redirect_to org_repo_commits_path(org_id: default_repository[:org_id], repo_id: default_repository[:repo_id])
+  def callback
+    session[:access_token] = @token
+    redirect_to org_repo_commits_path(org_id: @repository[:org_id], repo_id: @repository[:repo_id])
+  end
+
+  private
+  def set_repository
+    @token = request.env['omniauth.auth'][:credentials][:token]
+    @repository = CommitsRetrieveService
+                             .new(token: @token)
+                             .default_repository_information
+    redirect_with_error_message 'GitHub Organizationへの登録が無いため実行できません' unless @repository.present?
   end
 
 end
