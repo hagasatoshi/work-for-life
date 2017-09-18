@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
     if exception
       logger.info "Rendering 404 with exception: #{exception.message}"
     end
+    session[:access_token] = nil
     redirect_to root_path, alert: 'お探しのページは見つかりません'
   end
 
@@ -16,6 +17,7 @@ class ApplicationController < ActionController::Base
     if exception
       logger.info "ERROR. Rendering 500 with exception: #{exception.message}"
     end
+    session[:access_token] = nil
     redirect_to root_path, alert: '問題が発生しました'
   end
 
