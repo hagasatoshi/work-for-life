@@ -1,5 +1,8 @@
 - content_for(:page_title, 'Work for Life | GitHubで働き方をチェックする')
 
+- if flash[:alert].present?
+  .error-message = flash[:alert]
+
 .login-dialog-background
 .login-dialog-container
   .login-dialog

@@ -11,6 +11,4 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    - if flash[:alert].present?
-      .error-message = flash[:alert]
     = yield
