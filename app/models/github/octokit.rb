@@ -65,14 +65,29 @@ class Github::Octokit
     all_prs
   end
 
+  def pr_commits(organization, repository, pr_number)
+    @client
+        .pull_request_commits("#{organization}/#{repository}", pr_number)
+        .map {|commit| Commit.new(commit)}
+  end
+
   class PullRequest
-    attr_accessor :id, :title, :created_at, :updated_at
+    attr_accessor :number, :title, :created_at, :updated_at, :commits
     def initialize(gh_raw)
-      @id = gh_raw[:id]
+      @number = gh_raw[:number]
       @title = gh_raw[:title]
       @created_at = gh_raw[:created_at].in_time_zone('Asia/Tokyo')
       @updated_at = gh_raw[:updated_at].in_time_zone('Asia/Tokyo')
     end
   end
 
+  class Commit
+    attr_accessor :sha, :email, :date, :message
+    def initialize(gh_raw)
+      @sha = gh_raw[:sha]
+      @email = gh_raw[:commit][:author][:email]
+      @date = gh_raw[:commit][:committer][:date].in_time_zone('Asia/Tokyo')
+      @message = gh_raw[:commit][:message]
+    end
+  end
 end
