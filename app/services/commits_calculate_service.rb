@@ -38,8 +38,8 @@ class CommitsCalculateService
   end
 
   def sum_up(commit)
-    dow = commit[:date].strftime('%A')
-    commit_time = commit[:date].strftime('%H').to_i
+    dow = commit.date.strftime('%A')
+    commit_time = commit.date.strftime('%H').to_i
     @commit_counts[dow][Constants::TIME_ARRAY[commit_time]] += 1
   end
 

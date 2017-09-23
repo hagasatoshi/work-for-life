@@ -41,10 +41,7 @@ class Github::Octokit
   def commits(organization, repository, start_date, end_date)
     @client
         .commits("#{organization}/#{repository}", since: "#{start_date}T00:00:00+09:00", until: "#{end_date}T00:00:00+09:00")
-        .map { |commit|
-          {author: commit[:commit][:author][:email], date: commit[:commit][:committer][:date].in_time_zone('Asia/Tokyo'),
-            message: commit[:commit][:message]}
-        }
+        .map {|commit| Commit.new(commit)}
   end
 
   def pull_requests(organization, repository, from_date)
@@ -78,6 +75,7 @@ class Github::Octokit
       @title = gh_raw[:title]
       @created_at = gh_raw[:created_at].in_time_zone('Asia/Tokyo')
       @updated_at = gh_raw[:updated_at].in_time_zone('Asia/Tokyo')
+      @commits = []
     end
   end
 

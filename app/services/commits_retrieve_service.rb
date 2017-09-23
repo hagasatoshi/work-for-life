@@ -15,6 +15,17 @@ class CommitsRetrieveService
     self
   end
 
+  def pull_requests(from_date)
+    prs = @octokit.pull_requests(@org_name, @repo_name, from_date)
+    prs.each do |pr|
+      commits = @octokit.pr_commits(@org_name, @repo_name, pr.number)
+      pr.commits.concat(
+          @commits.select { |target_commit| commits.map {|pr_commit| pr_commit.sha} .include?(target_commit.sha) }
+      )
+    end
+    prs
+  end
+
   def organizations
     @octokit.my_organizations
   end
