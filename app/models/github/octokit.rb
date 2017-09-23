@@ -47,4 +47,32 @@ class Github::Octokit
         }
   end
 
+  def pull_requests(organization, repository, from_date)
+    @client.auto_paginate = false
+    all_prs = @client
+                  .pull_requests("#{organization}/#{repository}", {state: 'all', sort: 'updated', direction: 'desc'})
+                  .map { |pr| PullRequest.new(pr)}
+    result = @client.last_response.rels[:next].get
+    while result.rels[:next]
+      result = result.rels[:next].get
+      all_prs.concat(result.data.map { |pr| PullRequest.new(pr)})
+
+      if all_prs.last.updated_at < Time.zone.parse(from_date)
+        break
+      end
+    end
+    @client.auto_paginate = true
+    all_prs
+  end
+
+  class PullRequest
+    attr_accessor :id, :title, :created_at, :updated_at
+    def initialize(gh_raw)
+      @id = gh_raw[:id]
+      @title = gh_raw[:title]
+      @created_at = gh_raw[:created_at].in_time_zone('Asia/Tokyo')
+      @updated_at = gh_raw[:updated_at].in_time_zone('Asia/Tokyo')
+    end
+  end
+
 end
