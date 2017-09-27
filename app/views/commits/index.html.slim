@@ -36,7 +36,7 @@
                     - if pull_request.present?
                       li
                         .pull-request
-                          a href="https://www.google.co.jp" target="_blank"
+                          = link_to pull_request_url(@org_name, @repo_name, pull_request), target: "_blank"
                             .pull-request-content.type Pull request
                             .pull-request-content.title = pull_request.title
                             .pull-request-content.author = pull_request.assignee
