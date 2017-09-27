@@ -37,7 +37,8 @@
                       li
                         .pull-request
                           = link_to pull_request_url(@org_name, @repo_name, pull_request), target: "_blank"
-                            .pull-request-content.type Pull request
+                            .pull-request-content.type
+                              .label PR
                             .pull-request-content.title = pull_request.title
                             .pull-request-content.author = pull_request.assignee
                             .pull-request-content.commit-count = "#{pull_request.commits.size} commit"
