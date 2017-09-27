@@ -42,9 +42,9 @@ function refreshPage() {
 }
 
 function eventRowAccordion() {
-    $('.row').click(function() {
+    $('.circle-container').click(function() {
         var $clicked = $(this);
-        var $checkbox = $clicked.find('input.accordion');
+        var $checkbox = $clicked.parent().find('input.accordion');
         $checkbox.prop("checked", !$checkbox.prop("checked"));
     });
 }
