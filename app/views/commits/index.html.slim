@@ -22,12 +22,27 @@
         .commit-counts
           - Constants::DOW.each do |dow|
             .row
-              .col.dow = dow
-              - Constants::TIME_ARRAY.each do |time_desc|
-                .col.time
-                  .circle title="#{@commit_counts[dow][time_desc].to_s}commits" style=circle_style(@commit_counts[dow][time_desc])
-                  .line
-              .clear
+              .circle-container
+                .col.dow = dow
+                - Constants::TIME_ARRAY.each do |time_desc|
+                  .col.time
+                    .circle title="#{@commit_counts[dow][time_desc].to_s}commits" style=circle_style(@commit_counts[dow][time_desc])
+                    .line
+                .clear
+              input.accordion type="checkbox"
+              ul
+                - if @pull_requests[dow].present?
+                  - @pull_requests[dow].each do |pull_request|
+                    - if pull_request.present?
+                      li
+                        .pull-request
+                          = link_to pull_request_url(@org_name, @repo_name, pull_request), target: "_blank"
+                            .pull-request-content.type
+                              .label PR
+                            .pull-request-content.title = pull_request.title
+                            .pull-request-content.author = pull_request.assignee
+                            .pull-request-content.commit-count = "#{pull_request.commits.size} commit"
+                            .clear
           .row.footer
             .col.offset
             - Constants::TIME_ARRAY.each do |time_desc|

@@ -1,6 +1,7 @@
 $(document).on('turbolinks:load', function() {
     setBaloon('.circle');
     eventOrgPicklist();
+    eventRowAccordion();
 });
 
 function eventOrgPicklist() {
@@ -38,4 +39,12 @@ function refreshPage() {
 
     var url =  '/orgs/' + $pickOrg.val() + '/repos/' + $pickRepo.val() + '/commits?' + 'from_date=' + $pickFrom.val() + '&interval=' + $pickInterval.val();
     Turbolinks.visit(url);
+}
+
+function eventRowAccordion() {
+    $('.circle-container').click(function() {
+        var $clicked = $(this);
+        var $checkbox = $clicked.parent().find('input.accordion');
+        $checkbox.prop("checked", !$checkbox.prop("checked"));
+    });
 }

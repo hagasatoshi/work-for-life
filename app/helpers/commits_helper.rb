@@ -32,4 +32,8 @@ module CommitsHelper
     [{label: '１週間', value: 'week'}, {label: '１ヶ月', value: 'month'}]
   end
 
+  def pull_request_url(org, repo, pull_request)
+    "https://github.com/#{org}/#{repo}/pull/#{pull_request.number}"
+  end
+
 end

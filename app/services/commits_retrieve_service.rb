@@ -1,5 +1,5 @@
 class CommitsRetrieveService
-  attr_accessor :org_name, :repo_name, :from_date_val, :to_date_val, :interval, :commits
+  attr_accessor :org_name, :repo_name, :from_date_val, :to_date_val, :interval, :commits, :pull_requests
 
   def initialize(args=nil)
     @octokit = Github::Octokit.new(args[:token])
@@ -12,6 +12,11 @@ class CommitsRetrieveService
     @interval = dafault(interval, 'week')
     @to_date_val = @from_date_val + (@interval == 'week' ? 1.weeks : 1.months)
     @commits = @octokit.commits(@org_name, @repo_name, @from_date_val.strftime('%Y-%m-%d'), @to_date_val.strftime('%Y-%m-%d'))
+    @pull_requests = @octokit.pull_requests(@org_name, @repo_name, from_date)
+    if @commits.present? && @pull_requests.present?
+      set_parent_child_relation!(@commits, @pull_requests)
+    end
+
     self
   end
 
@@ -39,6 +44,19 @@ class CommitsRetrieveService
   end
 
   private
+  def set_parent_child_relation!(commits, pull_requests)
+    pull_requests.each do |pr|
+      puts "loading..... pr commits"
+      pr_commits = @octokit.pr_commits(@org_name, @repo_name, pr.number)
+      target_commits = commits.select { |target_commit| pr_commits.map {|pr_commit| pr_commit.sha} .include?(target_commit.sha) }
+      target_commits.each do |target_commit|
+        target_commit.pull_request = pr
+      end
+      pr.commits.concat(target_commits)
+    end
+  end
+
+
   def dafault(x, value)
     x.present? ? x : value
   end

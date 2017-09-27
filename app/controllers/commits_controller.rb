@@ -1,6 +1,6 @@
 class CommitsController < ApplicationController
   before_action :redirect_session_invalid
-  before_action :set_service, :set_repository_info, :set_commit_counts, :set_max_count, :set_orgs, :set_repos
+  before_action :set_service, :set_repository_info, :set_commit_counts, :set_max_count, :set_pull_requests, :set_orgs, :set_repos
 
   def index
   end
@@ -38,6 +38,12 @@ class CommitsController < ApplicationController
 
   def set_max_count
     @max_count = @calclate.max_count
+  end
+
+  def set_pull_requests
+    @pull_requests = CommitsCalculateService
+                         .new(commits: @retrieve.commits)
+                         .related_pull_requests
   end
 
   def set_orgs
