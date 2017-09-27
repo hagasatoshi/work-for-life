@@ -11,6 +11,19 @@ class CommitsCalculateService
     self
   end
 
+  def related_pull_requests
+    Constants::DOW
+      .reduce({}) { |pull_requests, dow|
+        pull_requests[dow] = @commits
+                                 .select {|commit| commit.date.strftime('%A') == dow}
+                                 .map {|commit| commit.pull_request }
+                                 .compact
+                                 .uniq
+                                 .sort_by { |pr| pr.created_at }
+        pull_requests
+      }
+  end
+
   def commit_counts
     @commit_counts
   end

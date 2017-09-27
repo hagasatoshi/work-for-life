@@ -41,7 +41,9 @@ class CommitsController < ApplicationController
   end
 
   def set_pull_requests
-    @pull_requests = @retrieve.pull_requests(@from_date)
+    @pull_requests = CommitsCalculateService
+                         .new(commits: @retrieve.commits)
+                         .related_pull_requests
   end
 
   def set_orgs
