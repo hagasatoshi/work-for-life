@@ -31,46 +31,17 @@
                 .clear
               input.accordion type="checkbox"
               ul
-                li
-                  .pull-request
-                    a href="https://www.google.co.jp" target="_blank"
-                      .pull-request-content.type Pull request
-                      .pull-request-content.title コミット一覧画面を実装する
-                      .pull-request-content.author Haga
-                      .pull-request-content.commit-count 5 commit
-                      .clear
-                li
-                  .pull-request
-                    a href="https://www.google.co.jp" target="_blank"
-                      .pull-request-content.type Pull request
-                      .pull-request-content.title コミット一覧画面を実装する
-                      .pull-request-content.author Haga
-                      .pull-request-content.commit-count 5 commit
-                      .clear
-                li
-                  .pull-request
-                    a href="https://www.google.co.jp" target="_blank"
-                      .pull-request-content.type Pull request
-                      .pull-request-content.title コミット一覧画面を実装する
-                      .pull-request-content.author Haga
-                      .pull-request-content.commit-count 5 commit
-                      .clear
-                li
-                  .pull-request
-                    a href="https://www.google.co.jp" target="_blank"
-                      .pull-request-content.type Pull request
-                      .pull-request-content.title コミット一覧画面を実装する
-                      .pull-request-content.author Haga
-                      .pull-request-content.commit-count 5 commit
-                      .clear
-                li
-                  .pull-request
-                    a href="https://www.google.co.jp" target="_blank"
-                      .pull-request-content.type Pull request
-                      .pull-request-content.title コミット一覧画面を実装する
-                      .pull-request-content.author Haga
-                      .pull-request-content.commit-count 5 commit
-                      .clear
+                - if @pull_requests[dow].present?
+                  - @pull_requests[dow].each do |pull_request|
+                    - if pull_request.present?
+                      li
+                        .pull-request
+                          a href="https://www.google.co.jp" target="_blank"
+                            .pull-request-content.type Pull request
+                            .pull-request-content.title = pull_request.title
+                            .pull-request-content.author = pull_request.assignee
+                            .pull-request-content.commit-count = "#{pull_request.commits.size} commit"
+                            .clear
           .row.footer
             .col.offset
             - Constants::TIME_ARRAY.each do |time_desc|
